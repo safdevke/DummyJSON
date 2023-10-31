@@ -5,28 +5,9 @@ const swaggerOptions = {
     openapi: '3.0.0',
     info: {
       title: 'DummyJSON API',
-      version: '0.0.5',
-      description:
-        'Get dummy/fake JSON data to use as placeholder in development or in prototype testing.',
-      contact: {
-        name: 'DummyJSON API',
-        url: 'https://dummyjson.com/',
-      },
-      license: {
-        name: 'MIT License (MIT)',
-        url: 'https://github.com/Ovi/DummyJSON/blob/master/LICENCE',
-      },
+      version: '1.0.0',
+      description: 'DummyJSON API',
     },
-    servers: [
-      {
-        url: 'http://dummyjson.com',
-        description: 'Production server',
-      },
-      {
-        url: 'http://localhost:3000',
-        description: 'Development server',
-      },
-    ],
     externalDocs: {
       description: 'swagger.json',
       url: '/api-docs/swagger.json',

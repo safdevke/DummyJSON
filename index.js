@@ -1,12 +1,14 @@
 // require node version>=14.0 to run the app,
 // because we use optional chaining etc...
 const express = require('express');
+const swaggerUI = require('swagger-ui-express');
 const injectMiddleWares = require('./src/middleware');
 const errorMiddleware = require('./src/middleware/error');
 const authUser = require('./src/middleware/auth');
 const routes = require('./src/routes');
 const { validateEnvVar, loadDataInMemory } = require('./src/utils/util');
 const { version } = require('./package.json');
+const apiDocs = require('./src/middleware/apiDocs');
 
 const { PORT = 3000, NODE_ENV } = process.env;
 
@@ -14,6 +16,10 @@ const { PORT = 3000, NODE_ENV } = process.env;
 validateEnvVar();
 
 const app = express();
+
+// api docs
+app.get('/api-docs/swagger.json', apiDocs.swaggerJsDoc);
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(apiDocs.swaggerDocs));
 
 // load all data in memory
 loadDataInMemory();
