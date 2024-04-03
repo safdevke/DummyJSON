@@ -1,5 +1,3 @@
-// require node version>=14.0 to run the app,
-// because we use optional chaining etc...
 const express = require('express');
 const swaggerUI = require('swagger-ui-express');
 const injectMiddleWares = require('./src/middleware');
@@ -9,6 +7,9 @@ const routes = require('./src/routes');
 const { validateEnvVar, loadDataInMemory } = require('./src/utils/util');
 const { version } = require('./package.json');
 const apiDocs = require('./src/middleware/apiDocs');
+
+// use database to store logs and custom responses
+require('./src/db/mongoose');
 
 const { PORT = 3000, NODE_ENV } = process.env;
 
@@ -33,11 +34,6 @@ app.set('view engine', 'ejs');
 // serving static files
 app.use('/static', express.static('./public'));
 
-// serving internal (products) images
-app.use('/image/i', (req, res) => {
-  res.redirect(`https://i.dummyjson.com/data${req.path}`);
-});
-
 // routes
 app.use('/', routes);
 
@@ -53,5 +49,7 @@ app.use(errorMiddleware);
 
 // start listening
 app.listen(PORT, () => {
-  console.info(`[Node][${NODE_ENV}] App v${version} running on PORT ${PORT}`);
+  console.info(
+    `[Node][${NODE_ENV}] App v${version} running at http://localhost:${PORT}`,
+  );
 });

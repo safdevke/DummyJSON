@@ -11,10 +11,12 @@ const commentRoutes = require('./comment');
 const postRoutes = require('./post');
 const productRoutes = require('./product');
 const quoteRoutes = require('./quote');
+const recipeRoutes = require('./recipe');
 const todoRoutes = require('./todo');
 const userRoutes = require('./user');
 const httpStatusRoutes = require('./http');
 const testRoutes = require('./test');
+const imageRoutes = require('./image');
 
 // dynamic resource routes
 // no-dynamic-routes
@@ -26,9 +28,11 @@ router.use(['/comment', '/comments'], commentRoutes);
 router.use(['/post', '/posts'], postRoutes);
 router.use(['/product', '/products'], productRoutes);
 router.use(['/quote', '/quotes'], quoteRoutes);
+router.use(['/recipe', '/recipes'], recipeRoutes);
 router.use(['/todo', '/todos'], todoRoutes);
 router.use(['/user', '/users'], userRoutes);
 router.use(['/http', '/https'], httpStatusRoutes);
 router.use('/test', testRoutes);
+router.use(['/image', '/i', '/images'], imageRoutes);
 
 module.exports = router;

@@ -20,12 +20,17 @@ const availableResources = [
   'image',
   'todos',
   'quotes',
+  'recipes',
   'auth',
   'http',
 ];
 
 router.get('/', (req, res) => {
   res.render('index', { ...commonVariables, path: 'home' });
+});
+
+router.get(['/image', '/i', '/images'], (req, res) => {
+  res.render('image', { ...commonVariables, path: 'image' });
 });
 
 router.get('/docs', (req, res) => {
